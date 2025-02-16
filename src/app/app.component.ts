@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Gestor_de_tiempos_y_Proyectos';
+  title = 'GestorDeTiemposYProyectos';
 }

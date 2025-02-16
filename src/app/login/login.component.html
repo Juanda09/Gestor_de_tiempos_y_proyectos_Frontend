@@ -1,0 +1,70 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <!-- Título y elección de formulario -->
+      <div class="text-center mb-4">
+        <h2 class="display-4 text-primary animate__animated animate__fadeIn">Bienvenido</h2>
+        <p class="lead text-muted animate__animated animate__fadeIn">Inicia sesión o regístrate para continuar</p>
+      </div>
+
+      <!-- Pestañas para cambiar entre login y register -->
+      <ul class="nav nav-tabs" id="authTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" id="login-tab" data-bs-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Iniciar sesión</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="register-tab" data-bs-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Registrar</a>
+        </li>
+      </ul>
+
+      <!-- Contenido de las pestañas -->
+      <div class="tab-content mt-3">
+        <!-- Formulario de Login -->
+        <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+          <form (ngSubmit)="login()" #loginForm="ngForm" class="form-container p-4 shadow-lg rounded bg-light animate__animated animate__fadeInUp">
+            <div class="mb-3">
+              <label for="loginUsername" class="form-label">Correo electrónico</label>
+              <input type="email" class="form-control form-control-lg" id="loginUsername" [(ngModel)]="loginData.username" name="username" required>
+            </div>
+            <div class="mb-3">
+              <label for="loginPassword" class="form-label">Contraseña</label>
+              <input type="password" class="form-control form-control-lg" id="loginPassword" [(ngModel)]="loginData.password" name="password" required>
+            </div>
+            <div class="mb-3 text-center">
+              <button type="submit" class="btn btn-primary w-100 py-2 button-pulse" [disabled]="!loginForm.valid">Iniciar sesión</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Formulario de Registro -->
+        <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+          <form (ngSubmit)="register()" #registerForm="ngForm" class="form-container p-4 shadow-lg rounded bg-light animate__animated animate__fadeInUp">
+            <div class="mb-3">
+              <label for="registerUsername" class="form-label">Nombre de usuario</label>
+              <input type="text" class="form-control form-control-lg" id="registerUsername" [(ngModel)]="registerData.username" name="username" required>
+            </div>
+            <div class="mb-3">
+              <label for="registerEmail" class="form-label">Correo electrónico</label>
+              <input type="email" class="form-control form-control-lg" id="registerEmail" [(ngModel)]="registerData.email" name="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="registerPassword" class="form-label">Contraseña</label>
+              <input type="password" class="form-control form-control-lg" id="registerPassword" [(ngModel)]="registerData.password" name="password" required>
+            </div>
+            <div class="mb-3">
+              <label for="registerConfirmPassword" class="form-label">Confirmar contraseña</label>
+              <input type="password" class="form-control form-control-lg" id="registerConfirmPassword" [(ngModel)]="registerData.confirmPassword" name="confirmPassword" required>
+            </div>
+            <!-- Validación de contraseñas coincidentes -->
+            <div *ngIf="registerData.password !== registerData.confirmPassword && registerData.confirmPassword" class="text-danger animated shake">
+              <p>Las contraseñas no coinciden</p>
+            </div>
+            <div class="mb-3 text-center">
+              <button type="submit" class="btn btn-success w-100 py-2 button-pulse" [disabled]="!registerForm.valid || registerData.password !== registerData.confirmPassword">Registrar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
